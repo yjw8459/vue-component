@@ -31,6 +31,7 @@ let title = "";
 onMounted(() => {
   title = "Title";
   console.log("onMounted");
+
   getUsers().then((response: any) => {
     console.log(response.data);
     // users = response.data;
