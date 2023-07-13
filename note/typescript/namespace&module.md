@@ -239,32 +239,79 @@ Events.on(body, 'click', function(e) {
 - ES6부터 모듈 지원
 - 파일 자체 범위 내에서 실행된다.(모듈 내 선언된 변수, 함수, 클래스 등을 명시적으로 내보내지 않는 이상 모듈 외부에서 접근할 수 없음.)
 
-```javascript
-//컴파일 전
+### export(모듈 내보내기)
 
-// 컴파일 후
-```
+변수, 함수, 클래스 앞에 export 키워드를 붙이면 내보낸다.
 
 ```javascript
-//컴파일 전
+// Dom/events.ts
+export function on(
+  el: Element | Document,
+  type: string,
+  handler: (e: Event) => void,
+  is_capture: boolean = false
+): void {
+  el.addEventListener(type, handler, is_capture);
+}
 
-// 컴파일 후
+export function off(
+  el: Element | Document,
+  type: string,
+  handler: (e: Event) => void,
+  is_capture: boolean = false
+): void {
+  el.removeEventListener(type, handler, is_capture);
+}
 ```
+
+### import(모듈 불러오기)
+
+외부 모듈을 불러와 사용할 때 import 구문을 사용한다.
+비구조화 할당을 사용할 수 있다.
 
 ```javascript
-//컴파일 전
+// app.ts
+import { on, off } from "./Dom/events";
 
-// 컴파일 후
+on(document, "click", (e) => (document.body.style.background = "#912f03"));
 ```
+
+### default 모듈 내보내기
+
+default를 사용해 모듈 내에서 내보낼 것을 묶어 기본으로 내보낼 수 있다.
 
 ```javascript
-//컴파일 전
+// Dom/selectors.ts
+function el(
+  selector: string,
+  context: HTMLElement | Document = document
+): HTMLElement {
+  return context.querySelector(selector);
+}
 
-// 컴파일 후
+function els(
+  selector: string,
+  context: HTMLElement | Document = document
+): NodeList {
+  return context.querySelectorAll(selector);
+}
+
+export default { el, els };
 ```
+
+### default 모듈 불러오기
+
+default로 내보내진 모듈은 import 구문에서 참조할 모듈 이름(변수 명)으로 설정할 수 있다.
 
 ```javascript
-//컴파일 전
+// app.ts
+import Dom from "./Dom/selectors"; // 변수 명 설정
+import { on, off } from "./Dom/events"; // 비구조화 할당
 
-// 컴파일 후
+on(document, "click", (e) => (Dom.el("body").style.background = "#912f03"));
 ```
+
+## 모듈 번들링
+
+ES6 모듈을 모든 브라우저에서 지원하지 않아 정상 작동하지 않음.
+모듈 번들러로 개발 단에서 모듈을 묶어 하나의 파일로 만들어냄.

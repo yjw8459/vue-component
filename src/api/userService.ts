@@ -1,4 +1,4 @@
-import axios, { AxiosPromise, AxiosResponse } from "axios";
+import axios, { AxiosPromise } from "axios";
 import User from "@/types/service/dto/user";
 
 export const getUsers: Function = (): AxiosPromise<Array<User>> => {
