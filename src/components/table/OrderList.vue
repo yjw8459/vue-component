@@ -19,19 +19,44 @@
       </tr>
     </tbody>
   </v-table>
+  <span>{{ publishedBooksMessage }}</span>
+  <p>{{ calculateBooksMessage() }}</p>
+  <button @click="author.books2.push(author.name)">TEst</button>
 </template>
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import { getUsers } from "@/api";
+import { reactive } from "vue";
 
 let users: any = [];
 
 let title = "";
 
+const author = reactive({
+  name: "John Doe",
+  books: [
+    "Vue 2 - Advanced Guide",
+    "Vue 3 - Basic Guide",
+    "Vue 4 - The Mystery",
+  ],
+  books2: [] as string[],
+  // books3: [] as string[],
+});
+
+// a computed ref
+const publishedBooksMessage = computed(() => {
+  console.log("publishedBooksMessage");
+  return author.books.length > 0 ? "Yes" : "No";
+});
+// in component
+function calculateBooksMessage() {
+  console.log("calculateBooksMessage");
+  return author.books2.length > 0 ? "Yes" : "No";
+}
+
 onMounted(() => {
   title = "Title";
   console.log("onMounted");
-
   getUsers().then((response: any) => {
     console.log(response.data);
     // users = response.data;

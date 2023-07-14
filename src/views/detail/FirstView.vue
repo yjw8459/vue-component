@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FirstComponent from '../../components/FirstComponent.vue'
+import FirstComponent from "../../components/test/FirstComponent.vue";
 </script>
 
 <template>

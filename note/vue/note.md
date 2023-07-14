@@ -391,6 +391,425 @@ proxy.nested = raw;
 console.log(proxy.nested === raw); // false
 ```
 
+#### reactive()의 제한 사항
+
+1. 제한된 데이터 타입: 객체 유형({}, 배열과 같은 컬렉션 유형)만 해당
+   - 해당되지 않는 데이터 유형(Map, Set, string, number, boolean)
+2. 놓친 반응성 연결을 대체할 수 없다.
+   - 아래 예시는 reactive({ count: 0 }) 의 반응성 연결을 잃는다
+
+```typescript
+let state = reactive({ count: 0 });
+state = reactive({ count: 1 });
+```
+
+3. 속성 분해 시 반응 연결 끊김
+
+```typescript
+const state = reactive({ count: 0 });
+
+// 연결 끊김
+let { count } = state;
+count++;
+callSomeFunction(state.count); // 0
+```
+
+### 반응 객체 속성
+
+ref()는 반응 객체의 속성으로 엑세스되거나 변경될 때, 자동으로 래핑 해제된다.
+
+```typescript
+const count = ref(0);
+const state = reactive({
+  count,
+});
+
+console.log(state.count); // 0
+
+state.count = 1;
+console.log(count.value); // 1
+```
+
+새 ref가 기존 ref에 연결된 속성에 할당되면 이전 ref를 대체한다.
+
+```typescript
+const otherCount = ref(2);
+
+state.count = otherCount;
+console.log(state.count); // 2
+// original ref is now disconnected from state.count
+console.log(count.value); // 1
+```
+
+ref 언래핑은 반응 객체 내부에 중첩된 경우만 발생한다.
+
+### 배열 및 컬렉션의 주의 사항
+
+반응형 객체와는 달리 ref가 반응형 배열의 요소 또는 네이티브 컬렉션 유형으로 엑세스될 때 언래핑이 수행되지 않는다.
+
+```typescript
+const books = reactive([ref("Vue 3 Guide")]);
+// need .value here
+console.log(books[0].value);
+
+const map = reactive(new Map([["count", ref(0)]]));
+// need .value here
+console.log(map.get("count").value);
+```
+
+### 템플릿에서 래핑 해제 시 주의사항
+
+템플릿에서 ref 언래핑은 ref가 템플릿 렌더링 컨텍스트의 최상위 속성인 경우만 해당된다.
+
+- object는 언래핑이 되지만, object.id를 호출할 경우 언래핑되지 않음.
+
+```typescript
+const count = ref(0);
+const object = { id: ref(0) };
+// 2
+{
+  {
+    count + 1;
+  }
+}
+{
+  // [object Object]1
+  {
+    object.id + 1;
+  }
+}
+// 언래핑 후 분해
+const { id } = object;
+// 2
+{
+  {
+    id + 1;
+  }
+}
+```
+
+반응 객체의 언래핑은 템플릿 렌더링 컨텍스트의 최상위 속성에만 해당되지만,
+{{  }} 머스타치에 단일 데이터인 경우 언래핑한다.
+
+```typescript
+{
+  // [object Object]1
+  {
+    object.id + 1;
+  }
+}
+{
+  // 1
+  {
+    object.id;
+  }
+}
+```
+
+이는 머스타치의 편의 기능이다.(최종 평가 값일 경우 object.id.vale .value가 생략된다.)
+
+### 속성 계산
+
+템플릿 내 표현식은 편리하지만, 간단한 작업을 위한 것이다.
+템플리셍 너무 많은 논리를 넣으면 템플릿이 커지고 유지 관리가 어려워진다.
+
+```typescript
+const author = reactive({
+  name: "John Doe",
+  books: [
+    "Vue 2 - Advanced Guide",
+    "Vue 3 - Basic Guide",
+    "Vue 4 - The Mystery",
+  ],
+});
+```
+
+```html
+<p>Has published books:</p>
+<span>{{ author.books.length > 0 ? 'Yes' : 'No' }}</span>
+```
+
+템플릿에 계산이 추가되면 복잡해진다.
+따라서, 아래와 같이 리팩토링 할 수 있다.
+
+```html
+<script setup lang="ts">
+  import { reactive, computed } from "vue";
+
+  const author = reactive({
+    name: "John Doe",
+    books: [
+      "Vue 2 - Advanced Guide",
+      "Vue 3 - Basic Guide",
+      "Vue 4 - The Mystery",
+    ],
+  });
+
+  // 캐싱 반환 author.books 의 변경이 일어나지 않으면, 이전 결과 값을 계산없이 반환
+  const publishedBooksMessage = computed(() => {
+    return author.books.length > 0 ? "Yes" : "No";
+  });
+  // 직접 함수를 호출하는 경우 반응 객체의 변경이 일어났을 경우 새로 계산
+  function calculateBooksMessage() {
+    return author.books.length > 0 ? "Yes" : "No";
+  }
+</script>
+
+<template>
+  <p>Has published books:</p>
+  <span>{{ publishedBooksMessage }}</span>
+</template>
+<p>{{ calculateBooksMessage() }}</p>
+```
+
+computed() 함수는 계산된 ref를 반환한다.
+author.books에 따라 데이터를 바인딩한다.
+publishedBooksMessage 와 calculateBooksMessage()의 차이점은 publishedBooksMessage은 캐싱 기능을 지원한다. author.books가 변경되지 않는 한 불필요한 계산 없이 이전 계산된 결과를 즉시 반환한다.
+
+- computed() 함수를 사용하면 author.books를 변경하지 않는 한, 다른 반응 객체의 변경이 일어나도 캐싱으로 이전 데이터를 계산없이 반환한다.
+- 직접 함수를 호출한 경우는 반응 객체의 변경이 일어났을 때, 항상 계산을 처리하고 결과를 반환한다.
+
+### 수정 가능한 계산 속성
+
+계산된 속성에 새 값을 할당하려면 런타임 경고가 발생한다.
+쓰기도 가능한 계산 속성이 필요한 경우 getter & setter를 모두 제공하면 된다.
+
+```html
+<script setup>
+  import { ref, computed } from "vue";
+
+  const firstName = ref("John");
+  const lastName = ref("Doe");
+
+  const fullName = computed({
+    // getter
+    get() {
+      return firstName.value + " " + lastName.value;
+    },
+    // setter
+    set(newValue) {
+      // Note: we are using destructuring assignment syntax here.
+      [firstName.value, lastName.value] = newValue.split(" ");
+    },
+  });
+</script>
+```
+
+### v-if
+
+```html
+<h1 v-if="awesome">Vue is awesome!</h1>
+```
+
+```html
+<button @click="awesome = !awesome">Toggle</button>
+
+<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-else>Oh no 😢</h1>
+```
+
+```html
+<div v-if="type === 'A'">A</div>
+<div v-else-if="type === 'B'">B</div>
+<div v-else-if="type === 'C'">C</div>
+<div v-else>Not A/B/C</div>
+```
+
+```html
+<template v-if="ok">
+  <h1>Title</h1>
+  <p>Paragraph 1</p>
+  <p>Paragraph 2</p>
+</template>
+```
+
+```html
+<!--
+This will throw an error because property "todo"
+is not defined on instance.
+-->
+<li v-for="todo in todos" v-if="!todo.isComplete">{{ todo.name }}</li>
+```
+
+### v-show
+
+```html
+<h1 v-show="ok">Hello!</h1>
+```
+
+### v-for
+
+```typescript
+const items = ref([{ message: "Foo" }, { message: "Bar" }]);
+```
+
+```html
+<li v-for="item in items">{{ item.message }}</li>
+```
+
+```typescript
+const parentMessage = ref("Parent");
+const items = ref([{ message: "Foo" }, { message: "Bar" }]);
+```
+
+```html
+<li v-for="(item, index) in items">
+  {{ parentMessage }} - {{ index }} - {{ item.message }}
+</li>
+```
+
+```typescript
+const parentMessage = "Parent";
+const items = [
+  /* ... */
+];
+
+items.forEach((item, index) => {
+  // has access to outer scope `parentMessage`
+  // but `item` and `index` are only available in here
+  console.log(parentMessage, item.message, index);
+});
+```
+
+```html
+<li v-for="{ message } in items">{{ message }}</li>
+
+<!-- with index alias -->
+<li v-for="({ message }, index) in items">{{ message }} {{ index }}</li>
+```
+
+```html
+<li v-for="item in items">
+  <span v-for="childItem in item.children">
+    {{ item.message }} {{ childItem }}
+  </span>
+</li>
+```
+
+```html
+<div v-for="item of items"></div>
+```
+
+```typescript
+const myObject = reactive({
+  title: "How to do lists in Vue",
+  author: "Jane Doe",
+  publishedAt: "2016-04-10",
+});
+```
+
+```html
+<ul>
+  <li v-for="value in myObject">{{ value }}</li>
+</ul>
+```
+
+```html
+<li v-for="(value, key) in myObject">{{ key }}: {{ value }}</li>
+```
+
+```html
+<li v-for="(value, key, index) in myObject">
+  {{ index }}. {{ key }}: {{ value }}
+</li>
+```
+
+```html
+<span v-for="n in 10">{{ n }}</span>
+```
+
+```html
+<ul>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
+    <li class="divider" role="presentation"></li>
+  </template>
+</ul>
+```
+
+```html
+<!--
+This will throw an error because property "todo"
+is not defined on instance.
+-->
+<li v-for="todo in todos" v-if="!todo.isComplete">{{ todo.name }}</li>
+```
+
+```html
+<template v-for="todo in todos">
+  <li v-if="!todo.isComplete">{{ todo.name }}</li>
+</template>
+```
+
+```html
+<div v-for="item in items" :key="item.id">
+  <!-- content -->
+</div>
+```
+
+```html
+<template v-for="todo in todos" :key="todo.name">
+  <li>{{ todo.name }}</li>
+</template>
+```
+
+```html
+<MyComponent v-for="item in items" :key="item.id" />
+```
+
+```html
+<MyComponent
+  v-for="(item, index) in items"
+  :item="item"
+  :index="index"
+  :key="item.id"
+/>
+```
+
+### 배열 변경 감지
+
+- push()
+- pop()
+- shift()
+- unshift()
+- splice()
+- sort()
+- reverse()
+
+### 이벤트 수정자
+
+```html
+<!-- only call `submit` when the `key` is `Enter` -->
+<input @keyup.enter="submit" />
+<input @keyup.page-down="onPageDown" />
+<!-- the click event's propagation will be stopped -->
+<a @click.stop="doThis"></a>
+
+<!-- the submit event will no longer reload the page -->
+<form @submit.prevent="onSubmit"></form>
+
+<!-- modifiers can be chained -->
+<a @click.stop.prevent="doThat"></a>
+
+<!-- just the modifier -->
+<form @submit.prevent></form>
+
+<!-- only trigger handler if event.target is the element itself -->
+<!-- i.e. not from a child element -->
+<div @click.self="doThat">...</div>
+<!-- use capture mode when adding the event listener -->
+<!-- i.e. an event targeting an inner element is handled here before being handled by that element -->
+<div @click.capture="doThis">...</div>
+
+<!-- the click event will be triggered at most once -->
+<a @click.once="doThis"></a>
+
+<!-- the scroll event's default behavior (scrolling) will happen -->
+<!-- immediately, instead of waiting for `onScroll` to complete  -->
+<!-- in case it contains `event.preventDefault()`                -->
+<div @scroll.passive="onScroll">...</div>
+```
+
 ```html
 
 ```
@@ -407,31 +826,15 @@ console.log(proxy.nested === raw); // false
 
 ```
 
-```typescript
+```html
 
 ```
 
-```typescript
+```html
 
 ```
 
-```typescript
-
-```
-
-```typescript
-
-```
-
-```typescript
-
-```
-
-```typescript
-
-```
-
-```typescript
+```html
 
 ```
 
