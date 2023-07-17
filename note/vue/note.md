@@ -810,31 +810,452 @@ is not defined on instance.
 <div @scroll.passive="onScroll">...</div>
 ```
 
+### 값 바인딩
+
+true, false에 따라 데이터 바인딩
+
 ```html
+<input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
+```
+
+동적인 데이터 바인딩
+
+```html
+<input
+  type="checkbox"
+  v-model="toggle"
+  :true-value="dynamicTrueValue"
+  :false-value="dynamicFalseValue"
+/>
+```
+
+#### .lazy
+
+이벤트 후에 데이터 동기화
+
+```html
+<!-- synced after "change" instead of "input" -->
+<input v-model.lazy="msg" />
+```
+
+## Life Cycle Hooks
+
+### onMounted
+
+초기 렌더링을 완료하고 DOM 노드를 만든 후 실행되는 코드
+
+```html
+<script setup>
+  import { onMounted } from "vue";
+
+  onMounted(() => {
+    console.log(`the component is now mounted.`);
+  });
+</script>
+```
+
+### Watch
+
+computed의 경우 상태 변경에 따른 반응으로 예기치 못한 상황이 발생할 수 있다.(비동기 처리 등)
+watch() 함수를 사용하여 반응 상태에 따른 콜백 트리거를 할 수 있다.
+
+```vue
+<script setup>
+import { ref, watch } from "vue";
+
+const question = ref("");
+const answer = ref("Questions usually contain a question mark. ;-)");
+
+// watch works directly on a ref
+watch(question, async (newQuestion, oldQuestion) => {
+  if (newQuestion.indexOf("?") > -1) {
+    answer.value = "Thinking...";
+    try {
+      const res = await fetch("https://yesno.wtf/api");
+      answer.value = (await res.json()).answer;
+    } catch (error) {
+      answer.value = "Error! Could not reach the API. " + error;
+    }
+  }
+});
+</script>
+
+<template>
+  <p>
+    Ask a yes/no question:
+    <input v-model="question" />
+  </p>
+  <p>{{ answer }}</p>
+</template>
+```
+
+watch의 첫 번째 매개 변수는 다양한 유형의 "반응형" 객체일 수 있다.
+
+```typescript
+const x = ref(0);
+const y = ref(0);
+
+// single ref
+watch(x, (newX) => {
+  console.log(`x is ${newX}`);
+});
+
+// getter
+watch(
+  () => x.value + y.value,
+  (sum) => {
+    console.log(`sum of x + y is: ${sum}`);
+  }
+);
+
+// array of multiple sources
+watch([x, () => y.value], ([newX, newY]) => {
+  console.log(`x is ${newX} and y is ${newY}`);
+});
+```
+
+watch의 콜백 인자는 watch 인자와 같음
+
+```typescript
+const obj = reactive({ count: 0 });
+
+// this won't work because we are passing a number to watch()
+watch(obj.count, (count) => {
+  console.log(`count is: ${count}`);
+});
+
+// instead, use a getter:
+watch(
+  () => obj.count,
+  (count) => {
+    console.log(`count is: ${count}`);
+  }
+);
+```
+
+### deep Watch
+
+반응 객체를 직접 호출하면 watch()는 암시적으로 깊은 관찰자를 생성
+watch 콜백은 모든 중첩된 변형에서 트리거된다.
+
+```typescript
+// Object 전체 Watch
+watch(obj, (newValue, oldValue) => {
+  console.log(newValue);
+  console.log(oldValue);
+  console.log(`newValue is ${newValue}, oldValue is ${oldValue}`);
+});
+
+// Object Property "Count" Watch
+watch(
+  () => obj.count,
+  (newCount) => {
+    console.log(`count is ${newCount}`);
+  }
+);
+
+// Object Property "Number" Watch
+watch(
+  () => obj.number,
+  (newNumber) => {
+    console.log(`number is ${newNumber}`);
+  }
+);
+
+// deep Watch 중첩된 객체의 Watch
+watch(
+  () => obj.state.someObject,
+  (newValue, oldValue) => {
+    console.log(newValue);
+    console.log(oldValue);
+  },
+  { deep: true }
+);
+
+// ?
+watch(
+  source,
+  (newValue, oldValue) => {
+    // executed immediately, then again when `source` changes
+  },
+  { immediate: true }
+);
+
+const todoId = ref(1);
+const data = ref(null);
+
+watch(
+  todoId,
+  async () => {
+    // 최초는 todoId 초기 값으로 호출, 그 후 Watch 하고있는 소스의 변경이 있을 시 호출
+    console.log("immediate");
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+    );
+    data.value = await response.json();
+  },
+  { immediate: true }
+);
+
+// watchEffect 화면 로딩 시 호출
+// immediate 설정이 따로 필요없음. todoId의 Watching이 따로 필요없음.
+watchEffect(async () => {
+  console.log("watchEffect");
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos/${todoId.value}`
+  );
+  data.value = await response.json();
+});
+```
+
+watch와 watchEffect 차이
+watch는 명시적 소스만을 추적
+콜백 내에서 엑세스되는 항목은 추적하지 않음.
+
+watchEffect는 동기식 실행 중에 엑세스되는 모든 반응 속성을 자동으로 추적한다.
+
+### watch 콜백 플러시 타이밍
+
+반응 상태 변경 시 Vue 구성 요소 업데이트(ref)와 사용자의 Watch 콜백이 트리거 모두 트리거된다.
+Watch 콜백은 Vue 구성 요소 업데이트 전에 호출되므로, 업데이트 되기 이전 상태의 DOM에 접근하게 된다.
+그래서, Vue가 업데이트한 이 후에 DOM을 엑세스하려면 flush: 'post' 옵션이 필요하다.
+
+```typescript
+watch(source, callback, {
+  flush: "post",
+});
+
+watchEffect(callback, {
+  flush: "post",
+});
+
+// or
+
+import { watchPostEffect } from "vue";
+
+watchPostEffect(() => {
+  /* executed after Vue updates */
+});
+```
+
+### $emit
+
+부모 컴포넌트로 변경값 보내기
+자식 컴포넌트에서 emit을 통해 부모 컴포넌트로 이벤트를 날림.
+부모 컴포넌트에서 자식 컴포넌트의 이벤트를 Catch하여 처리
+
+```html
+<!-- 부모 컴포넌트 -->
+<script setup lang="ts">
+  const word = ref("");
+</script>
+
+<div>
+  <h1>{{ word }}</h1>
+  <!-- Catch emitEvent -->
+  <WatchTestComponent @emitEvent="word = $event.target.value" />
+</div>
+
+<!-- 자식 컴포넌트( WatchTestComponent.vue ) -->
+<input @input="$emit('emitEvent', $event)" />
+```
+
+### is
+
+### 전역 컴포넌트 등록
+
+```typescript
+import { createApp } from "vue";
+
+const app = createApp({});
+
+app.component(
+  // the registered name
+  "MyComponent",
+  // the implementation
+  {
+    /* ... */
+  }
+);
+```
+
+```typescript
+import MyComponent from "./App.vue";
+
+app.component("MyComponent", MyComponent);
+```
+
+```typescript
+app
+  .component("ComponentA", ComponentA)
+  .component("ComponentB", ComponentB)
+  .component("ComponentC", ComponentC);
+```
+
+### 지역 컴포넌트 등록
+
+```html
+<script setup>
+  import ComponentA from "./ComponentA.vue";
+</script>
+
+<template>
+  <ComponentA />
+</template>
+```
+
+### props
+
+상위 컴포넌트에서 하위 컴포넌트로 값을 바인딩하는 것.
+모든 props는 자식 속성과 부모 속성 사이에 단방향 바인딩을 형성한다.
+이렇게 해야 자식 컴포넌트에서 부모 컴포넌트의 상태를 변경하여 데이터 흐름을 어렵게 만드는 것을 방지할 수 있다.
+또한, 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 구성 요소를 최신 데이터로 업데이트한다.
+
+```html
+<script setup>
+  const props = defineProps(["foo"]);
+
+  console.log(props.foo);
+</script>
+<script>
+  // non setup
+  export default {
+    props: ["foo"],
+    setup(props) {
+      // setup() receives props as the first argument.
+      console.log(props.foo);
+    },
+  };
+</script>
+```
+
+```typescript
+// in <script setup>
+defineProps({
+  title: String,
+  likes: Number,
+});
+// non setup
+// in non-<script setup>
+export default {
+  props: {
+    title: String,
+    likes: Number,
+  },
+};
+```
+
+하위 컴포넌트에서 상위 컴포넌트를 로컬 데이터로 사용할 경우, 반응성 부여
+
+```typescript
+const props = defineProps(["initialCounter"]);
+
+// counter only uses props.initialCounter as the initial value;
+// it is disconnected from future prop updates.
+const counter = ref(props.initialCounter);
+```
+
+```typescript
 
 ```
 
-```html
+```typescript
 
 ```
 
-```html
+```typescript
 
 ```
 
-```html
+```typescript
 
 ```
 
-```html
+```typescript
 
 ```
 
-```html
+```typescript
 
 ```
 
-```html
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
+
+```
+
+```typescript
 
 ```
 
