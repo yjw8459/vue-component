@@ -19,7 +19,12 @@
 
   <ModelTestComponent />
   <EventTestComponent></EventTestComponent>
-  <BindTestComponent></BindTestComponent>
+  <BindTestComponent>
+    <!-- Slot Test -->
+    <v-btn>
+      <!-- Test -->
+    </v-btn>
+  </BindTestComponent>
   <!-- 컴포넌트에 Attibute를 추가할 경우 기존 Attribute에 가산됨. -->
   <FirstChildComponent class="test2"></FirstChildComponent>
 </template>

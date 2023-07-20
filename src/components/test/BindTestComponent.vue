@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="title">
+      <!-- Slot -->
+      <h1>Slot Title</h1>
+      <slot>11111111</slot>
+    </div>
     <!-- Attribute 바인딩 -->
     <div class="container" :class="{ active: isActive }">
       <span :class="{ error: hasError }"> Text Dummy </span>
