@@ -1110,6 +1110,7 @@ app
 모든 props는 자식 속성과 부모 속성 사이에 단방향 바인딩을 형성한다.
 이렇게 해야 자식 컴포넌트에서 부모 컴포넌트의 상태를 변경하여 데이터 흐름을 어렵게 만드는 것을 방지할 수 있다.
 또한, 상위 컴포넌트가 업데이트 될 때마다 하위 컴포넌트의 구성 요소를 최신 데이터로 업데이트한다.
+defineProps는 따로 import가 필요없고 Proxy로 만들어진 Object가 반환된다.
 
 ```html
 <script setup>
@@ -1155,8 +1156,22 @@ const props = defineProps(["initialCounter"]);
 const counter = ref(props.initialCounter);
 ```
 
-```typescript
+TypeScript interface를 통해 설정할 수도 있다.
+interface를 사용할 경우 default 값은 withDefaults 라는 내부 함수를 이용해 따로 지정해야 한다.
+또, withDefaults를 사용하면 default 값을 설정할 수 있다.
 
+```typescript
+export type ButtonGroupProps = {
+  dataItems?: ButtonGroupDataItems;
+  dir?: ButtonGroupDir;
+  disabled?: ButtonGroupDisabled;
+  value?: ButtonGroupValue;
+  width?: ButtonGroupWidth;
+};
+
+const props = withDefaults(defineProps<ButtonGroupProps>(), {
+  dataItems: () => [],
+});
 ```
 
 ```typescript
