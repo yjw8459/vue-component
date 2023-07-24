@@ -31,13 +31,13 @@
 <script setup lang="ts">
 import { onUpdated } from "vue";
 import { onMounted } from "vue";
-import FirstChildComponent from "./FirstChildComponent.vue";
-import EventTestComponent from "./EventTestComponent.vue";
-import BindTestComponent from "./BindTestComponent.vue";
-import ModelTestComponent from "./ModelTestComponent.vue";
-import WatchTestComponent from "./WatchTestComponent.vue";
-import PropsTestComponent from "./PropsTestComponent.vue";
-import EmitTestComponent from "./EmitTestComponent.vue";
+import FirstChildComponent from "./first-child/FirstChildComponent.vue";
+import EventTestComponent from "./first-child/EventTestComponent.vue";
+import BindTestComponent from "./first-child/BindTestComponent.vue";
+import ModelTestComponent from "./first-child/ModelTestComponent.vue";
+import WatchTestComponent from "./first-child/WatchTestComponent.vue";
+import PropsTestComponent from "./first-child/PropsTestComponent.vue";
+import EmitTestComponent from "./first-child/EmitTestComponent.vue";
 import { ref } from "vue";
 
 const test = ref("");

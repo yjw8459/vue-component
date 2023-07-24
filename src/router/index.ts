@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import FirstView from "../views/detail/FirstView.vue";
 import SecondView from "../views/detail/SecondView.vue";
+import ThirdView from "../views/detail/ThirdView.vue";
 import OrderView from "../views/order/OrderView.vue";
 const routes = [
   {
@@ -16,6 +17,7 @@ const routes = [
   },
   { path: "/first", component: FirstView },
   { path: "/second", component: SecondView },
+  { path: "/third", component: ThirdView },
   { path: "/order", component: OrderView },
 ];
 

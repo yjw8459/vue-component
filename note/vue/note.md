@@ -1174,8 +1174,82 @@ const props = withDefaults(defineProps<ButtonGroupProps>(), {
 });
 ```
 
-```typescript
+## Provide / Inject
 
+### Prop Drilling
+
+부모 컴포넌트에서 자식 컴포넌트로 데이터를 전달할 때, props를 사용한다.
+깊이있게, 자식 컴포넌트로 Props를 전달하는 경우를 Prop Drilling이라고 한다.
+Prop Drilling은 많은 구성 요소가 영향을 받기 때문에 관리하기 어렵다.
+Provice, Inject를 활용하여 Props Drilling 을 해결할 수 있다.
+
+부모 구송 요소는 모든 하위 구성 요소에 대해 종속성 공급자 역할을 할 수 있다.
+하위 트리의 모든 구성 요소는 깊이에 관계 없이 상위 체인의 구성 요소에서 종속성을 주입 받을 수 있다.
+
+#### provide()
+
+Vers.setup script
+
+```html
+<script setup>
+  import { provide, ref } from "vue";
+  const count = ref(0);
+  provide(/* key */ "message", /* value */ "hello!");
+  provide("key", count); // 반응형 객체도 Provide 가능하다.
+</script>
+```
+
+Vers.CompositionAPI
+
+```typescript
+import { provide } from "vue";
+export default {
+  setup() {
+    provide(/* key */ "message", /* value */ "hello!");
+  },
+};
+```
+
+전역 Provide도 가능하다.
+
+```html
+<script setup lang="ts">
+  import { createApp } from "vue";
+
+  const app = createApp({});
+
+  app.provide(/* key */ "message", /* value */ "hello!");
+</script>
+```
+
+#### inject()
+
+부모 요소로 부터 Props 주입받기
+
+```html
+<script setup>
+  import { inject } from "vue";
+
+  const message = inject("message");
+  const count = inject("key"); // inject 시 언래핑되지 않음.
+  const value = inject("message", "default value"); // default Value를 설정할 수 있다.
+
+  // 경우에 따라 함수를 호출하거나 새 클래스를 인스턴스화하여 기본 값을 만들 수 있다.
+  // 선택적 값을 사용하지 않는 경우 불필요한 계산이나 부작용을 피하기 위해 기본 값을 생성하는 팩토리 함수를 사용할 수 있다.
+  // 세번 째 매개 변수는 기본 값이 팩토리 함수로 처리되어야 함을 나타냄.
+  const value = inject("key", () => new ExpensiveClass(), true);
+</script>
+```
+
+ref 등의 반응성 객체는 inject 시 언래핑되지 않으므로, 반응성 연결을 유지할 수 있다.
+또 inject를 받을 때, Provide된 키가 없다면 오류가 발생하므로, default Value를 설정할 수 있다.
+
+```html
+<script setup lang="ts"></script>
+```
+
+```html
+<script setup lang="ts"></script>
 ```
 
 ```typescript
