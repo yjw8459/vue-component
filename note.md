@@ -101,6 +101,45 @@ MonoRepo에서 git, npm과 같은 패키지 매니저를 사용하기 편리하�
 }
 ```
 
+## lerna로 CHANGELOG 생성
+
+- commitlint
+- husky
+
+conventional-commit을 위한 commitlint와 이를 `git hook`에서 사용하기 위해 husky를 설치해야한다.
+
+**Git Hook**
+git에서 특정 이벤트 (commit, push, etc)가 발생했을 때, hook을 통해 특정 스크립트를 실행할 수 있도록 도와준다.
+
+```bash
+yarn add @commitlint/cli @commitlint/config-conventional husky -DW
+yarn
+```
+
+### husky.config.ts 파일 작성
+
+```typescript
+module.exports = {
+  hooks: {
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+  },
+};
+```
+
+### commitlint.config.ts 파일 작성
+
+```typescript
+module.exports = {
+  extends: ["commitlint/config-conventional"],
+};
+```
+
+commitlint와 husky를 지정해준다.
+
+### CHANGELOG.md
+
+위와 같은 설정 후 commit을 진행하고 push까지 진행 후 lerna version을 사용하면 `CHANGELOG`가 생성된다.
+
 # NX
 
 확장 가능한 모노레포를 위한 도구
