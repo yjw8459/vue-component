@@ -10,10 +10,12 @@
     "packages/**/*"
   ],
   "dependencies": {
-    "lerna": "^7.1.4"
+    "lerna": "^7.1.4",
+    "nx": "^16.5.5"
   },
   "scripts": {
     "note:serve": "yarn workspace @docs/note serve",
-    "todo:serve": "yarn workspace @webapp/todo serve"
+    "todo:serve": "yarn workspace @webapp/todo serve",
+    "nx:graph": "yarn nx graph"
   }
 }
