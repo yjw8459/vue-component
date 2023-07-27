@@ -1,7 +1,7 @@
 ## Vite & Vue 생성
 
 ```bash
-yanr create vite
+npm init vue@latest
 ```
 
 ### 애플리케이션 인스턴스 생성 createApp

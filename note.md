@@ -154,6 +154,26 @@ MonoRepo에서 git, npm과 같은 패키지 매니저를 사용하기 편리하�
 
 ## lerna로 CHANGELOG 생성
 
+lerna를 사용하여 MonoRepo의 CHANGELOG를 자동화 한다.
+
+**MonoRepo 구조**
+
+```text
+Root
+├─ ...
+├─ packages
+│  └─ @docs
+│     └─ note
+│  └─ @webapp
+│     ├─ todo
+```
+
+lerna로 관리할 프로젝트는 packages 하위에 위치한다.
+`@docs/note`, `@webapp/todo`
+lerna를 통한 CHANGELOG를 생성하면, 변경 사항에 따라 각 하위 패키지 별로 별도의 버전을 생성한다.
+
+### CHANGELOG 자동화를 위한 commintlint, husky 설치
+
 - commitlint
 - husky
 
@@ -190,6 +210,84 @@ commitlint와 husky를 지정해준다.
 ### CHANGELOG.md
 
 위와 같은 설정 후 commit을 진행하고 push까지 진행 후 lerna version을 사용하면 `CHANGELOG`가 생성된다.
+
+### CHANGELOG 커스터마이징
+
+#### root/lerna.json
+
+```json
+{
+  "packages": ["packages/**/*"], // lerna로 관리할 패키지들의 경로
+  "version": "1.1.0",
+  "npmClient": "yarn",
+  "useNx": true,
+  // cli 옵션
+  "command": {
+    "run": {
+      "npmClient": "yarn"
+    },
+    // lerna version에 대한 옵션
+    "version": {
+      "allowBranch": "master",
+      // conventional-commit 사용
+      "conventionalCommits": true,
+      // CHANGELOG 사전 설정
+      "changelogPreset": {
+        "name": "conventional-changelog-conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            // Type에 따라 작성되는 타이틀을 커스텀
+            "section": ":rocket: New Features",
+            "hidden": false
+          },
+          {
+            "type": "fix",
+            "section": ":bug: Bug Fix",
+            "hidden": false
+          },
+          {
+            "type": "docs",
+            "section": ":memo: Documentation",
+            "hidden": false
+          },
+          {
+            "type": "style",
+            "section": ":sparkles: Styling",
+            "hidden": false
+          },
+          {
+            "type": "refactor",
+            "section": ":house: Code Refactoring",
+            "hidden": false
+          },
+          {
+            "type": "build",
+            "section": ":hammer: Build System",
+            "hidden": false
+          },
+          {
+            "type": "chore",
+            "section": ":mega: Other",
+            // chore등의 angular Type도 hidden 속성을 false로 지정하면 CHANGELOG에 작성된다.
+            "hidden": false
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+```text
+Root
+├─ ...
+├─ packages
+│  └─ @docs
+│     └─ note
+│  └─ @webapp
+│     ├─ todo
+```
 
 # NX
 
