@@ -10,6 +10,7 @@
   ],
   "dependencies": {},
   "scripts": {
+    "postinstall": "npx husky install",
     "note:serve": "yarn workspace @docs/note serve",
     "todo:serve": "yarn workspace @webapp/todo serve",
     "nx:graph": "yarn nx graph",
