@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/yjw8459/vue-component/compare/v1.2.0...v1.2.1) (2023-07-27)
+
+
+### :memo: Documentation
+
+* Document Modify ([eecdc65](https://github.com/yjw8459/vue-component/commit/eecdc6578562927d635f497f5b38bf8716c0714c))
+
+
+### :sparkles: Styling
+
+* Style CHANGELOG Test ([b21b354](https://github.com/yjw8459/vue-component/commit/b21b3544c151f2b17d6705af792d21a404c4f22b))
+
+
+### :house: Code Refactoring
+
+* Refactor CHANGELOG Test ([d776fe3](https://github.com/yjw8459/vue-component/commit/d776fe351a13906b52688641f86f61d729bf601f))
+
+
+### :hammer: Build System
+
+* Build CHANGELOG Test ([bcf878d](https://github.com/yjw8459/vue-component/commit/bcf878d23cc1e50f704cef63b1aa07d238146412))
+
+
+### :mega: Other
+
+* add Vuetify ([cebfce1](https://github.com/yjw8459/vue-component/commit/cebfce1f1a2c384c46186d2abe925fe4a75ffc39))
+
+
+
 ## [1.2.0](https://github.com/yjw8459/vue-component/compare/v1.1.0...v1.2.0) (2023-07-27)
 
 
