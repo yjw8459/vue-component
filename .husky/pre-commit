@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo 'Hello Husky Message'
+
+exit 0 # Exit 코드가 0이 아니면 커밋이 취소됨.
