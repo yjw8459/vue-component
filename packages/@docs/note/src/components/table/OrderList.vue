@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
-import { getUsers } from "@/api";
+import { getUsers } from "@api";
 import { reactive } from "vue";
 
 let users: any = [];

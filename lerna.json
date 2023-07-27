@@ -1,7 +1,5 @@
 {
-  "packages": [
-    "packages/**/*"
-  ],
+  "packages": ["packages/**/*"],
   "version": "1.2.1",
   "npmClient": "yarn",
   "useNx": true,
@@ -51,14 +49,15 @@
             "hidden": false
           }
         ],
-        "issuePrefixes": [
-          "#"
-        ],
+        "issuePrefixes": ["#"],
         "issueUrlFormat": "{{host}}/{{owner}}/{{repository}}/issues/{{id}}",
         "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
         "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
         "userUrlFormat": "{{host}}/{{user}}"
       }
+    },
+    "publish": {
+      "conventionalCommits": true
     }
   }
 }

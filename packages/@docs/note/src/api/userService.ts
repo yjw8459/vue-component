@@ -1,5 +1,5 @@
 import axios, { AxiosPromise } from "axios";
-import User from "@/types/service/dto/user";
+import { User } from "@/types/service/dto/user";
 
 export const getUsers: Function = (): AxiosPromise<Array<User>> => {
   return axios.get(
