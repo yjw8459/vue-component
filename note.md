@@ -81,23 +81,74 @@ MonoRepo에서 git, npm과 같은 패키지 매니저를 사용하기 편리하�
 ### root/lerna.json
 
 ```json
-
 // lerna.json
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "independent", // 패키지 배포와 관련된 버전을 패키지 별로 독립적으로 가져가기 위한 설정
-  "version": "0.0.0",
-  "npmClient": "yarn",  // yarn을 사용하기 위한 설정
-  "useWorkspaces": true // yarn workspace를 사용하기 위해
+  "packages": ["packages/**/*"],
+  "version": "1.1.0",
+  "npmClient": "yarn",
+  "useNx": true,
+  // cli 옵션
+  "command": {
+    "run": {
+      "npmClient": "yarn"
+    },
+    // lerna version에 대한 옵션
+    "version": {
+      "allowBranch": "master",
+      // conventional-commit 사용
+      "conventionalCommits": true,
+      // CHANGELOG 사전 설정
+      "changelogPreset": {
+        "name": "conventional-changelog-conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            // Type에 따라 작성되는 타이틀을 커스텀
+            "section": ":rocket: New Features",
+            "hidden": false
+          },
+          {
+            "type": "fix",
+            "section": ":bug: Bug Fix",
+            "hidden": false
+          },
+          {
+            "type": "docs",
+            "section": ":memo: Documentation",
+            "hidden": false
+          },
+          {
+            "type": "style",
+            "section": ":sparkles: Styling",
+            "hidden": false
+          },
+          {
+            "type": "refactor",
+            "section": ":house: Code Refactoring",
+            "hidden": false
+          },
+          {
+            "type": "build",
+            "section": ":hammer: Build System",
+            "hidden": false
+          },
+          {
+            "type": "chore",
+            "section": ":mega: Other",
+            // chore등의 angular Type도 hidden 속성을 false로 지정하면 CHANGELOG에 작성된다.
+            "hidden": false
+          }
+        ]
+      }
+    }
+  }
 }
+```
 
+```json
 // root > packages.json
 {
-  "workspaces": [
-   "packages/*"
-  ]
+  "workspaces": ["packages/*"]
 }
 ```
 
