@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/yjw8459/vue-component/compare/v1.3.1...v1.4.0) (2023-07-27)
+
+
+### :rocket: New Features
+
+* git hook with husky ([d66036a](https://github.com/yjw8459/vue-component/commit/d66036a7ce776109eea316d90c37bdbd3e77124c))
+
+
+
 ## [1.3.1](https://github.com/yjw8459/vue-component/compare/v1.3.0...v1.3.1) (2023-07-27)
 
 

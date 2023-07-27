@@ -1,13 +1,13 @@
 {
   "name": "@docs/note",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "serve": "vite --port 3000",
     "build": "vue-tsc --noEmit && vite build",
+    "lint": "eslint . --fix --ignore-path .gitignore",
     "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "serve": "vite --port 3000"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
