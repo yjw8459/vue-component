@@ -5144,7 +5144,7 @@ vue@^3.2.0:
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
 
-vuetify@^3.0.0:
+vuetify@^3.0.0, vuetify@^3.3.10:
   version "3.3.10"
   resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.10.tgz"
   integrity sha512-jV5zA4PMK1ik8j/alPhAR75fzSoAvUgPcoKl+fZ/buDu70vJ3nM6+F3zh78UBs0PMzyLlarwt851QNbYXLbZbQ==
