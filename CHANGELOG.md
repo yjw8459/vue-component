@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/yjw8459/vue-component/compare/v1.2.2...v1.3.0) (2023-07-27)
+
+
+### :mega: Other
+
+* husky Test ([8fcf9aa](https://github.com/yjw8459/vue-component/commit/8fcf9aa2473bf7f0c519fd72a3c06e2b743ed68a))
+* husky Test 2 ([f3e029c](https://github.com/yjw8459/vue-component/commit/f3e029c8feda2260d6df739241ce615326786b4a))
+* husky Test 3 ([7bdd580](https://github.com/yjw8459/vue-component/commit/7bdd5809193235ff05427bad04e7ca16c03b0abd))
+
+
+### :rocket: New Features
+
+* husky Test4 ([20ea5db](https://github.com/yjw8459/vue-component/commit/20ea5dbfab7e7b115c0a5c620ffd970f963eab26))
+
+
+
 ## [1.2.2](https://github.com/yjw8459/vue-component/compare/v1.2.1...v1.2.2) (2023-07-27)
 
 
