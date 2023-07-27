@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.0](https://github.com/yjw8459/vue-component/compare/v1.1.0...v1.2.0) (2023-07-27)
+
+
+### :bug: Bug Fix
+
+* Test Fix ([0bb441b](https://github.com/yjw8459/vue-component/commit/0bb441b84048fecbe569665d45be21588265afd8))
+
+
+### :mega: Other
+
+* **initial:** CHANGELOG Test ([7786a49](https://github.com/yjw8459/vue-component/commit/7786a4956b169f423a25800daf1bfe59fd2158ae))
+
+
+### :rocket: New Features
+
+* @docs/note Modify ([83a76ae](https://github.com/yjw8459/vue-component/commit/83a76ae6427df5896e2d3385946c347ad661acdb))
+
+
+
 # 1.1.0 (2023-07-27)
 
 
