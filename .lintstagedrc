@@ -1,0 +1,15 @@
+{
+  "!(.yarn/**)*.{js,ts}": [
+    "eslint --fix"
+  ],
+  "!(.yarn/**)*.{css,scss}": [
+    "stylelint --fix"
+  ],
+  "!(.yarn/**)*.{vue}": [
+    "eslint --fix",
+    "stylelint --fix"
+  ],
+  "package.json": [
+    "npx sort-package-json"
+  ]
+}

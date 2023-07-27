@@ -54,3 +54,52 @@ Git Repository 서버에 있는 모든 프로젝트에 대해 Push 정책을 설
 husky를 사용하면 Git Hooks를 보다 쉽게 적용할 수 있다.
 commit, push 정책을 관리하고 공유할 수 있다.
 
+### 설치
+
+```bash
+npx husky-init && yarn              # Yarn 1
+```
+
+설치 되어있는 경우
+
+```bash
+npx husky install
+```
+
+### package.json 설정
+
+```json
+  "scripts": {
+    ...
+    "prepare": "husky install"
+  },
+```
+
+### husky Hook 추가(lint-staged)
+
+```bash
+npx husky add .husky/pre-commit "yarn yarn lint-staged"
+```
+
+```bash
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+
+### lint-staged
+
+stage 상태(변경 사항)의 git 파일에 대해 lint와 우리가 설정해둔 명령어를 실행하기 위해 사용한다.
+
+#### 설치
+
+```bash
+yarn add -D lint-staged
+```
+
+#### .lintstagedrc.json
+
+```json
+{
+  "*.{js,ts,vue}": ["npx vue-cli-service lint"],
+  "*.{css,scss,vue}": ["npx stylelint"]
+}
+```
