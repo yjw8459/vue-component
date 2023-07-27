@@ -1,6 +1,6 @@
 {
   "name": "@webapp/todo",
-  "version": "0.0.0",
+  "version": "1.2.2",
   "private": true,
   "scripts": {
     "serve": "vite --port 9090",
