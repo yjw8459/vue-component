@@ -1,7 +1,6 @@
 {
   "name": "root",
   "private": true,
-  "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/yjw8459/vue-component.git",
   "author": "yjw8459 <ryu01410@gmail.com>",
@@ -9,18 +8,18 @@
   "workspaces": [
     "packages/**/*"
   ],
-  "dependencies": {
-    "lerna": "^7.1.4",
-    "nx": "^16.5.5"
-  },
+  "dependencies": {},
   "scripts": {
     "note:serve": "yarn workspace @docs/note serve",
     "todo:serve": "yarn workspace @webapp/todo serve",
-    "nx:graph": "yarn nx graph"
+    "nx:graph": "yarn nx graph",
+    "lerna:version": "lerna version"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "lerna": "^7.1.4",
+    "nx": "^16.5.5"
   }
 }
