@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/yjw8459/vue-component/compare/v1.4.0...v1.4.1) (2023-07-31)
+
+
+### :mega: Other
+
+* edit vetor enviroment ([7e8f84e](https://github.com/yjw8459/vue-component/commit/7e8f84e2316ee5bc1c1a7c3839b20666ac9c7c7f))
+
+
+### :bug: Bug Fix
+
+* vetur path issue ([6e708bd](https://github.com/yjw8459/vue-component/commit/6e708bddcbf58075b05ef2922cc3f6a2d668f2de))
+
+
+
 ## [1.4.0](https://github.com/yjw8459/vue-component/compare/v1.3.1...v1.4.0) (2023-07-27)
 
 
