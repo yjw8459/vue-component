@@ -50,3 +50,5 @@ MonoRepo에서 git, npm과 같은 패키지 매니저를 사용하기 편리하�
 - 초반 설정이 번거로움
 - 나에게 맞는 워크 플로우를 구성할 수 있음.
 - pnpm
+
+lerna.json의 packages = package.json의 workspaces 경로가 같아야 한다.

@@ -1,10 +1,14 @@
 // Plugins
 import vue from "@vitejs/plugin-vue";
 import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import { resolve } from "path";
+import { createRequire } from "module";
 
 // Utilities
 import { defineConfig } from "vite";
 import { fileURLToPath, URL } from "node:url";
+
+const targetRequire = createRequire(__dirname);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,7 +27,9 @@ export default defineConfig({
   define: { "process.env": {} },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      "@": resolve(__dirname, "./src"),
+      "~": resolve(__dirname, "./src"),
+      vue: targetRequire.resolve("vue"),
     },
     extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
