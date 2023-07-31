@@ -1,14 +1,23 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "allowSyntheticDefaultImports": true,
+    // "composite": true
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "types": ["node", "vuetify"],
+    "paths": {
+      "@/*": ["src/*"]
     }
-  ]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
+  // include, exclude 파일 경로를 설정, 제외 시킬 수 있음
 }

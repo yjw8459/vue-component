@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+const message: string = "HomeView";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div>{{ message }}</div>
 </template>

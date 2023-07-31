@@ -13,6 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@eslint/eslint-config-typescript": "1.5.0",
+    "@eslint/eslint-config-vue": "1.5.0",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"

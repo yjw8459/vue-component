@@ -1,0 +1,3 @@
+{
+  "extends": ["@eslint/eslint-config-typescript", "@eslint/eslint-config-vue"]
+}
