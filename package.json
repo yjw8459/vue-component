@@ -11,6 +11,7 @@
     "commitlint": "commitlint",
     "postinstall": "npx husky install",
     "lerna:version": "lerna version",
+    "book:serve": "yarn workspace @docs/book docs:dev",
     "note:serve": "yarn workspace @docs/note serve",
     "note:lint": "nx lint @docs/note",
     "nx:graph": "yarn nx graph",
