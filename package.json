@@ -15,7 +15,9 @@
     "nx:graph": "yarn nx graph",
     "todo:serve": "yarn workspace @webapp/todo serve"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@eslint/eslint-config-prettier": "1.5.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
