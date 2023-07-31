@@ -1,5 +1,3 @@
 {
-  "*.{js,ts,vue}": [
-    "eslint --fix"
-  ]
+  "!(.yarn/**)*.{js,ts,vue}": ["eslint --fix"]
 }
