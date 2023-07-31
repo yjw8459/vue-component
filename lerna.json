@@ -1,8 +1,6 @@
 {
-  "packages": [
-    "packages/**/*"
-  ],
-  "version": "1.6.0",
+  "packages": ["packages/**/*"],
+  "version": "1.7.0",
   "npmClient": "yarn",
   "useNx": true,
   "command": {
@@ -51,9 +49,7 @@
             "hidden": false
           }
         ],
-        "issuePrefixes": [
-          "#"
-        ],
+        "issuePrefixes": ["#"],
         "issueUrlFormat": "{{host}}/{{owner}}/{{repository}}/issues/{{id}}",
         "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
         "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",

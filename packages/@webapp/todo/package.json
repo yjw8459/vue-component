@@ -1,6 +1,6 @@
 {
   "name": "@webapp/todo",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "scripts": {
     "serve": "vite --port 9090",
@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@eslint/eslint-config-typescript": "1.5.0",
+    "@eslint/eslint-config-typescript": "^1.7.0",
     "@eslint/eslint-config-vue": "1.5.0",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",

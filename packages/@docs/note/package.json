@@ -1,6 +1,6 @@
 {
   "name": "@docs/note",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     "serve": "vite --port 3000"
   },
   "dependencies": {
-    "@eslint/eslint-config-typescript": "1.5.0",
+    "@eslint/eslint-config-typescript": "^1.7.0",
     "@eslint/eslint-config-vue": "1.5.0",
     "@mdi/font": "7.0.96",
     "axios": "^1.4.0",
