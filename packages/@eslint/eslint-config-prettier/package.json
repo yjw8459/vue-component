@@ -1,7 +1,7 @@
 {
   "name": "@eslint/eslint-config-prettier",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.5.0",
   "main": ".src/index.js",
   "devDependencies": {
     "eslint-config-prettier": "^8.9.0",
