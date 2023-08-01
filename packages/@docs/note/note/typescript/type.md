@@ -1,5 +1,5 @@
 ```javascript
-let milk_chocolate = "밀크 초콜릿"; // 초기 문자열 할당 시 자동 Type String
+let milk_chocolate = '밀크 초콜릿'; // 초기 문자열 할당 시 자동 Type String
 milk_chocolate = 2018;
 
 /*
@@ -33,7 +33,7 @@ let product_name: string = 'OGT'
 ## Array
 
 ```javascript
-let array: (number | string)[] = [102, "유종원"];
+let array: (number | string)[] = [102, '유종원'];
 ```
 
 ## Tuple
@@ -41,7 +41,7 @@ let array: (number | string)[] = [102, "유종원"];
 배열의 타입과 순서를 Type 지정할 수 있음.
 
 ```javascript
-let array: [string, number] = ["유종원", 1111];
+let array: [string, number] = ['유종원', 1111];
 
 // Error let array: [string, number] = [1111, '유종원'];
 ```
@@ -145,7 +145,7 @@ assignClass = function (name) {
   factorical의 Type (n: number) => number
   
 */
-let factorial: (n: number) => number = (n) => {
+let factorial: (n: number) => number = n => {
   if (n < 0) {
     return 0;
   }
@@ -163,13 +163,13 @@ let Dom: {
   version: string,
   el: () => void,
   css: () => void,
-  [propName: string]: any, // ⬅︎
+  [propName: string]: any // ⬅︎
 };
 
 Dom = {
-  version: "0.0.1",
+  version: '0.0.1',
   el() {},
-  css() {},
+  css() {}
 };
 
 Dom.each = function () {};
@@ -207,7 +207,7 @@ function invalid(message: string): never {
 
 // never 타입을 결과 추론(Inferred)
 function fail() {
-  return invalid("실패");
+  return invalid('실패');
 }
 
 // 무한 루프
@@ -227,22 +227,22 @@ function infiniteAnimate(): never {
 // 타입 별칭(Type Alias)
 type operation = {
   data: number[],
-  output: (num: number) => number[],
+  output: (num: number) => number[]
 };
 
 // 사용자 정의 타입 operation 적용 예시
 let sum: operation = {
   data: [10, 30, 60],
   output(num) {
-    return this.data.map((n) => n + num);
-  },
+    return this.data.map(n => n + num);
+  }
 };
 
 let multiply: operation = {
   data: [110, 230, 870, 231],
   output(num) {
-    return this.data.map((n) => n * num);
-  },
+    return this.data.map(n => n * num);
+  }
 };
 ```
 
@@ -269,3 +269,11 @@ let assertion_count:number = (word as string).length;
 ```
 
 - JSX와 함께 사용하는 경우 as 문법만 허용
+
+## defineExpose
+
+- 부모 컴포넌트가 자식 컴포넌트의 API에 직접적으로 접근할 수 있도록 하는 방법을 제공하는 함수
+- 자식 컴포넌트의 setup 함수 내에서 사용된다.
+
+- 기존 Vue2 에서는 props, emit, ref 등의 속성을 사용하여 자식 컴포넌트의 API를 부모 컴포넌트에 노출할 수 있었다.
+- Vue3에서는 defineExpose 함수를 사용하여 자식 컴포넌트에서 노출할 API를 직접 정의할 수 있다.
