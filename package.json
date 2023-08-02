@@ -13,6 +13,8 @@
     "lerna:version": "lerna version",
     "book:serve": "yarn workspace @docs/book docs:dev",
     "note:serve": "yarn workspace @docs/note serve",
+    "com:serve": "yarn workspace @webapp/component serve",
+    "com:build": "yarn workspace @webapp/component build",
     "note:lint": "nx lint @docs/note",
     "nx:graph": "yarn nx graph",
     "todo:serve": "yarn workspace@webapp/todo serve",

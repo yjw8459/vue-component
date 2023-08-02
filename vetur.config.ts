@@ -9,6 +9,7 @@ module.exports = {
   },
   projects: [
     './packages/@docs/note', // Shorthand for specifying only the project root location
+    './packages/@webapp/component',
     './packages/@webapp/todo',
     './packages/@eslint/*'
   ]

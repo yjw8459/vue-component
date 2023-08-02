@@ -1,29 +1,29 @@
 // Composables
-import { createRouter, createWebHistory } from "vue-router";
-import FirstView from "../views/detail/FirstView.vue";
-import SecondView from "../views/detail/SecondView.vue";
-import ThirdView from "../views/detail/ThirdView.vue";
-import OrderView from "../views/order/OrderView.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import FirstView from '../views/detail/FirstView.vue';
+import SecondView from '../views/detail/SecondView.vue';
+import ThirdView from '../views/detail/ThirdView.vue';
+import OrderView from '../views/order/OrderView.vue';
 const routes = [
   {
-    path: "/",
+    path: '/',
     children: [
       {
-        path: "",
-        name: "Main",
-        component: () => import("@/views/detail/Main.vue"),
-      },
-    ],
+        path: '',
+        name: 'Main',
+        component: () => import('@/views/detail/Main.vue')
+      }
+    ]
   },
-  { path: "/first", component: FirstView },
-  { path: "/second", component: SecondView },
-  { path: "/third", component: ThirdView },
-  { path: "/order", component: OrderView },
+  { path: '/first', component: FirstView },
+  { path: '/second', component: SecondView },
+  { path: '/third', component: ThirdView },
+  { path: '/order', component: OrderView }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 });
 
 export default router;

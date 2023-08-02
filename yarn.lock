@@ -7261,7 +7261,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-"typescript@>=3 < 6", "typescript@^4.6.4 || ^5.0.0", typescript@^5.0.0, typescript@~5.1.6:
+"typescript@>=3 < 6", "typescript@^4.6.4 || ^5.0.0", typescript@^5.0.0, typescript@^5.0.2, typescript@~5.1.6:
   version "5.1.6"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.1.6.tgz"
   integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
@@ -7429,6 +7429,17 @@ vite-plugin-vuetify@^1.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+vite@^4.3.9:
+  version "4.4.8"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-4.4.8.tgz#31e4a438f8748695c68bd57ffd262ba93540fdf7"
+  integrity sha512-LONawOUUjxQridNWGQlNizfKH89qPigK36XhMI7COMGztz8KNY0JHim7/xDd71CZwGT4HtSRgI7Hy+RlhG0Gvg==
+  dependencies:
+    esbuild "^0.18.10"
+    postcss "^8.4.26"
+    rollup "^3.25.2"
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 vitepress@^1.0.0-beta.7:
   version "1.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-1.0.0-beta.7.tgz#edf7f0806e700ed9b08d84e48131d78e453d3a19"
@@ -7511,7 +7522,7 @@ vue-eslint-parser@^9.1.1, vue-eslint-parser@^9.3.1:
     lodash "^4.17.21"
     semver "^7.3.6"
 
-vue-router@^4.0.0, vue-router@^4.2.4:
+vue-router@^4.0.0, vue-router@^4.2.2, vue-router@^4.2.4:
   version "4.2.4"
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-4.2.4.tgz"
   integrity sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==
@@ -7535,7 +7546,7 @@ vue-tsc@^1.2.0:
     "@vue/typescript" "1.8.6"
     semver "^7.3.8"
 
-vue-tsc@^1.8.6:
+vue-tsc@^1.8.5, vue-tsc@^1.8.6:
   version "1.8.8"
   resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-1.8.8.tgz#67317693eb2ef6747e89e6d834eeb6d2deb8871d"
   integrity sha512-bSydNFQsF7AMvwWsRXD7cBIXaNs/KSjvzWLymq/UtKE36697sboX4EccSHFVxvgdBlI1frYPc/VMKJNB7DFeDQ==
@@ -7559,6 +7570,11 @@ vuetify@^3.0.0:
   version "3.3.10"
   resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.10.tgz"
   integrity sha512-jV5zA4PMK1ik8j/alPhAR75fzSoAvUgPcoKl+fZ/buDu70vJ3nM6+F3zh78UBs0PMzyLlarwt851QNbYXLbZbQ==
+
+vuetify@^3.3.11:
+  version "3.3.11"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.3.11.tgz#b63e6b19a8517bef11e5382b1db06ee37e693853"
+  integrity sha512-hlbSgxXCcEu4VelJMRHKhvLpaitLsruHvdvolbqbCS6Z64XoulUDw3CQ9ay6WGBL7uckmop0bUYidD2d8mN0UQ==
 
 w3c-xmlserializer@^4.0.0:
   version "4.0.0"
