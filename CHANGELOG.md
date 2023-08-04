@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.0](https://github.com/yjw8459/vue-component/compare/v1.7.0...v1.8.0) (2023-08-04)
+
+
+### :mega: Other
+
+* 앰비언트 모듈 개념 정리 ([e184de7](https://github.com/yjw8459/vue-component/commit/e184de7297d99b185a8993d5b1e1b42ea1f3ff8e))
+* cancel set vitepress ([6db34bd](https://github.com/yjw8459/vue-component/commit/6db34bd415f8bfcc0d3b8935eb2131259f52a732))
+* defineExpose memo ([0327721](https://github.com/yjw8459/vue-component/commit/032772154970beee56ff4723b77fa9314903128a))
+
+
+### :rocket: New Features
+
+* add Vuetifyjs ([d2a6092](https://github.com/yjw8459/vue-component/commit/d2a6092a8830985419cc57806ce42a3b2df7cd7d))
+* connect @webapp/component ([b7f6bab](https://github.com/yjw8459/vue-component/commit/b7f6baba900b477dffc93860950a160ff4388394))
+* init @webapp/component ([cb24b01](https://github.com/yjw8459/vue-component/commit/cb24b01600b155b89d9708e653437a470f673a9a))
+* init vitepress book ([8087466](https://github.com/yjw8459/vue-component/commit/8087466201866dee5c31f985cff72073ef99db97))
+
+
+
 ## [1.7.0](https://github.com/yjw8459/vue-component/compare/v1.6.0...v1.7.0) (2023-07-31)
 
 

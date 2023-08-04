@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.0](https://github.com/yjw8459/vue-component/compare/v1.7.0...v1.8.0) (2023-08-04)
+
+
+### :rocket: New Features
+
+* connect @webapp/component ([b7f6bab](https://github.com/yjw8459/vue-component/commit/b7f6baba900b477dffc93860950a160ff4388394))
+
+
+
 ## [1.7.0](https://github.com/yjw8459/vue-component/compare/v1.6.0...v1.7.0) (2023-07-31)
 
 

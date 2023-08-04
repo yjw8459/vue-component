@@ -1,6 +1,6 @@
 {
   "name": "@docs/note",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "@eslint/eslint-config-typescript": "^1.7.0",
     "@eslint/eslint-config-vue": "^1.5.0",
     "@mdi/font": "7.0.96",
-    "@webapp/component": "^1.0.0",
+    "@webapp/component": "^1.8.0",
     "axios": "^1.4.0",
     "core-js": "^3.29.0",
     "pinia": "^2.0.0",
