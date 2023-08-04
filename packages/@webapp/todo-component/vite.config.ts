@@ -2,7 +2,7 @@ import dns from 'dns';
 import { createRequire } from 'module';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import type { UserConfigExport } from 'vite';
 
 const targetRequire = createRequire(__dirname);
@@ -10,12 +10,23 @@ const targetRequire = createRequire(__dirname);
 dns.setDefaultResultOrder('verbatim');
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
-
+export default defineConfig(() => {
   const config: UserConfigExport = {
     build: {
-      reportCompressedSize: false
+      lib: {
+        entry: resolve(__dirname, 'src/components/index.ts'),
+        fileName: 'index',
+        formats: ['es']
+      },
+      reportCompressedSize: false,
+      rollupOptions: {
+        external: ['vue'],
+        output: {
+          globals: {
+            vue: 'Vue'
+          }
+        }
+      }
     },
     plugins: [vue()],
     resolve: {
@@ -26,7 +37,7 @@ export default defineConfig(({ mode }) => {
       }
     },
     server: {
-      port: 3000
+      port: 8080
     }
   };
 

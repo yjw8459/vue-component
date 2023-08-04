@@ -1,15 +1,37 @@
 <template>
-  <v-app-bar :elevation="2">
-    <v-app-bar-title>
+  <VHeaderBar v-bind="vHeaderProps">
+    <template>
       <v-icon icon="mdi-circle-slice-6" />
-      Vuetify
-    </v-app-bar-title>
-    <v-btn ref="goMain" href="/">Home</v-btn>
-    <v-btn ref="goFirst" href="/first">First</v-btn>
-    <v-btn ref="goSecond" href="/second">Second</v-btn>
-    <v-btn ref="goThird" href="/third">Third</v-btn>
-    <v-btn ref="goOrder" href="/order">Order</v-btn>
-  </v-app-bar>
-  <!-- <v-app-bar title="Application bar"></v-app-bar> -->
+      YJW Project
+    </template>
+  </VHeaderBar>
 </template>
-<script lang="ts" setup></script>
+<script setup lang="ts">
+import type { VHeaderBarProps } from '@webapp/component';
+import { VHeaderBar } from '@webapp/component';
+import { reactive } from 'vue';
+
+const vHeaderProps = reactive<VHeaderBarProps>({
+  title: 'testTile',
+  elevation: 2,
+  items: [
+    { itemTitle: 'test1' },
+    { itemTitle: 'test2' },
+    { itemTitle: 'test3' }
+    // {
+    //   clickEvent: (event, value) => {
+    //     console.log(event);
+    //     console.log(value);
+    //     alert('test1');
+    //   }
+    // },
+    // {
+    //   clickEvent: (event, value) => {
+    //     console.log(event);
+    //     console.log(value);
+    //     alert('test2');
+    //   }
+    // }
+  ]
+});
+</script>

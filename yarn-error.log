@@ -2,7 +2,7 @@ Arguments:
   C:\Users\Osstem\AppData\Roaming\nvm\v18.16.0\node.exe C:\Users\Osstem\.yarn\bin\yarn.js
 
 PATH: 
-  C:\Users\Osstem\.yarn\bin;C:\Users\Osstem\.config\yarn\global\node_modules\.bin;C:\Users\Osstem\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Osstem\bin;C:\Program Files\Java\jdk1.8.0_321\bin;C:\Windows\Softcamp\SDK;C:\Windows\Softcamp\SDS\x64;C:\Windows\Softcamp\SDS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python310\Scripts;C:\Python310;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Windows\SoftCamp\VSD;C:\Program Files\Git\cmd;C:\Program Files\PuTTY;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Inzent\XEDM\Protect;C:\Users\Osstem\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\Osstem\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip;C:\Program Files\JetBrains\IntelliJ IDEA 2022.1.1\bin;C:\Users\Osstem\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Osstem\AppData\Local\gitkraken\bin;C:\Program Files\JetBrains\DataGrip 2022.2.1\bin;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Users\Osstem\AppData\Local\Microsoft\WindowsApps;C:\Users\Osstem\AppData\Roaming\npm;C:\Users\Osstem\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Users\Osstem\.yarn\bin;C:\Users\Osstem\.config\yarn\global\node_modules\.bin;C:\Users\Osstem\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Osstem\bin;C:\Program Files\Java\jdk1.8.0_321\bin;C:\Windows\Softcamp\SDK;C:\Windows\Softcamp\SDS\x64;C:\Windows\Softcamp\SDS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python310\Scripts;C:\Python310;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Windows\SoftCamp\VSD;C:\Program Files\Git\cmd;C:\Program Files\PuTTY;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Inzent\XEDM\Protect;%NVM_HOME%;%NVM_SYMLINK%;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\Osstem\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Bandizip;C:\Program Files\JetBrains\IntelliJ IDEA 2022.1.1\bin;C:\Users\Osstem\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Osstem\AppData\Local\gitkraken\bin;C:\Program Files\JetBrains\DataGrip 2022.2.1\bin;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Users\Osstem\AppData\Local\Microsoft\WindowsApps;C:\Users\Osstem\AppData\Roaming\npm;C:\Users\Osstem\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.19
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@eslint%2feslint-config-prettier: Not found
-      at params.callback [as _callback] (C:\Users\Osstem\.yarn\lib\cli.js:66145:18)
-      at self.callback (C:\Users\Osstem\.yarn\lib\cli.js:140890:22)
-      at Request.emit (node:events:513:28)
-      at Request.<anonymous> (C:\Users\Osstem\.yarn\lib\cli.js:141862:10)
-      at Request.emit (node:events:513:28)
-      at IncomingMessage.<anonymous> (C:\Users\Osstem\.yarn\lib\cli.js:141784:12)
-      at Object.onceWrapper (node:events:627:28)
-      at IncomingMessage.emit (node:events:525:35)
-      at endReadableNT (node:internal/streams/readable:1359:12)
-      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+  Error: EPERM: operation not permitted, open 'D:\git\todo\node_modules\@vue\typescript\node_modules\@vue\language-core\node_modules\.bin\tsserver'
 
 npm manifest: 
   {
@@ -32,7 +22,6 @@ npm manifest:
     "private": true,
     "repository": "https://github.com/yjw8459/vue-component.git",
     "author": "yjw8459 <ryu01410@gmail.com>",
-    "main": "index.js",
     "workspaces": [
       "packages/**/*"
     ],
@@ -40,15 +29,20 @@ npm manifest:
       "commitlint": "commitlint",
       "postinstall": "npx husky install",
       "lerna:version": "lerna version",
-      "note:serve": "yarn workspace @docs/note serve",
+      "book:serve": "nx serve @docs/book docs:dev",
+      "note:serve": "nx serve @docs/note",
+      "note:build": "nx build @docs/note",
+      "com:serve": "nx serve @webapp/component",
+      "com:build": "nx build @webapp/component",
       "note:lint": "nx lint @docs/note",
       "nx:graph": "yarn nx graph",
-      "todo:serve": "yarn workspace@webapp/todo serve",
+      "nx:clear": "nx clear-cache",
+      "todo:serve": "nx serve @webapp/todo",
       "todo:lint": "nx lint @webapp/todo",
       "lint-staged": "lint-staged"
     },
     "dependencies": {
-      "@eslint/eslint-config-prettier": "1.5.0"
+      "@eslint/eslint-config-prettier": "^1.5.0"
     },
     "devDependencies": {
       "@commitlint/cli": "^17.6.7",
@@ -62,7 +56,8 @@ npm manifest:
       "lerna": "^7.1.4",
       "lint-staged": "^13.2.3",
       "nx": "^16.5.5",
-      "prettier": "2.8.8"
+      "prettier": "2.8.8",
+      "typescript": "^5.1.3"
     }
   }
 
@@ -7333,7 +7328,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
     integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
   
-  "typescript@>=3 < 6", "typescript@^4.6.4 || ^5.0.0", typescript@^5.0.0, typescript@~5.1.6:
+  "typescript@>=3 < 6", "typescript@^4.6.4 || ^5.0.0", typescript@^5.0.0, typescript@^5.1.3, typescript@~5.1.6:
     version "5.1.6"
     resolved "https://registry.npmjs.org/typescript/-/typescript-5.1.6.tgz"
     integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
@@ -7490,10 +7485,21 @@ Lockfile:
       debug "^4.3.3"
       upath "^2.0.1"
   
-  "vite@^3.0.0 || ^4.0.0", vite@^4.2.0, vite@^4.4.6, vite@^4.4.7:
+  "vite@^3.0.0 || ^4.0.0", vite@^4.4.7:
     version "4.4.7"
     resolved "https://registry.npmjs.org/vite/-/vite-4.4.7.tgz"
     integrity sha512-6pYf9QJ1mHylfVh39HpuSfMPojPSKVxZvnclX1K1FyZ1PXDOcLBibdq5t1qxJSnL63ca8Wf4zts6mD8u8oc9Fw==
+    dependencies:
+      esbuild "^0.18.10"
+      postcss "^8.4.26"
+      rollup "^3.25.2"
+    optionalDependencies:
+      fsevents "~2.3.2"
+  
+  vite@^4.3.9:
+    version "4.4.8"
+    resolved "https://registry.yarnpkg.com/vite/-/vite-4.4.8.tgz#31e4a438f8748695c68bd57ffd262ba93540fdf7"
+    integrity sha512-LONawOUUjxQridNWGQlNizfKH89qPigK36XhMI7COMGztz8KNY0JHim7/xDd71CZwGT4HtSRgI7Hy+RlhG0Gvg==
     dependencies:
       esbuild "^0.18.10"
       postcss "^8.4.26"
@@ -7583,7 +7589,7 @@ Lockfile:
       lodash "^4.17.21"
       semver "^7.3.6"
   
-  vue-router@^4.0.0, vue-router@^4.2.4:
+  vue-router@^4.0.0, vue-router@^4.2.2, vue-router@^4.2.4:
     version "4.2.4"
     resolved "https://registry.npmjs.org/vue-router/-/vue-router-4.2.4.tgz"
     integrity sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==
@@ -7607,7 +7613,7 @@ Lockfile:
       "@vue/typescript" "1.8.6"
       semver "^7.3.8"
   
-  vue-tsc@^1.8.6:
+  vue-tsc@^1.8.5, vue-tsc@^1.8.6:
     version "1.8.8"
     resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-1.8.8.tgz#67317693eb2ef6747e89e6d834eeb6d2deb8871d"
     integrity sha512-bSydNFQsF7AMvwWsRXD7cBIXaNs/KSjvzWLymq/UtKE36697sboX4EccSHFVxvgdBlI1frYPc/VMKJNB7DFeDQ==
@@ -7631,6 +7637,11 @@ Lockfile:
     version "3.3.10"
     resolved "https://registry.npmjs.org/vuetify/-/vuetify-3.3.10.tgz"
     integrity sha512-jV5zA4PMK1ik8j/alPhAR75fzSoAvUgPcoKl+fZ/buDu70vJ3nM6+F3zh78UBs0PMzyLlarwt851QNbYXLbZbQ==
+  
+  vuetify@^3.3.11:
+    version "3.3.11"
+    resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.3.11.tgz#b63e6b19a8517bef11e5382b1db06ee37e693853"
+    integrity sha512-hlbSgxXCcEu4VelJMRHKhvLpaitLsruHvdvolbqbCS6Z64XoulUDw3CQ9ay6WGBL7uckmop0bUYidD2d8mN0UQ==
   
   w3c-xmlserializer@^4.0.0:
     version "4.0.0"

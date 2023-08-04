@@ -7261,7 +7261,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-"typescript@>=3 < 6", "typescript@^4.6.4 || ^5.0.0", typescript@^5.0.0, typescript@^5.0.2, typescript@~5.1.6:
+"typescript@>=3 < 6", "typescript@^4.6.4 || ^5.0.0", typescript@^5.0.0, typescript@^5.1.3, typescript@~5.1.6:
   version "5.1.6"
   resolved "https://registry.npmjs.org/typescript/-/typescript-5.1.6.tgz"
   integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
@@ -7418,7 +7418,7 @@ vite-plugin-vuetify@^1.0.0:
     debug "^4.3.3"
     upath "^2.0.1"
 
-"vite@^3.0.0 || ^4.0.0", vite@^4.2.0, vite@^4.4.6, vite@^4.4.7:
+"vite@^3.0.0 || ^4.0.0", vite@^4.4.7:
   version "4.4.7"
   resolved "https://registry.npmjs.org/vite/-/vite-4.4.7.tgz"
   integrity sha512-6pYf9QJ1mHylfVh39HpuSfMPojPSKVxZvnclX1K1FyZ1PXDOcLBibdq5t1qxJSnL63ca8Wf4zts6mD8u8oc9Fw==

@@ -3,7 +3,6 @@
   "private": true,
   "repository": "https://github.com/yjw8459/vue-component.git",
   "author": "yjw8459 <ryu01410@gmail.com>",
-  "main": "index.js",
   "workspaces": [
     "packages/**/*"
   ],
@@ -11,13 +10,15 @@
     "commitlint": "commitlint",
     "postinstall": "npx husky install",
     "lerna:version": "lerna version",
-    "book:serve": "yarn workspace @docs/book docs:dev",
-    "note:serve": "yarn workspace @docs/note serve",
-    "com:serve": "yarn workspace @webapp/component serve",
-    "com:build": "yarn workspace @webapp/component build",
+    "book:serve": "nx serve @docs/book docs:dev",
+    "note:serve": "nx serve @docs/note",
+    "note:build": "nx build @docs/note",
+    "com:serve": "nx serve @webapp/component",
+    "com:build": "nx build @webapp/component",
     "note:lint": "nx lint @docs/note",
     "nx:graph": "yarn nx graph",
-    "todo:serve": "yarn workspace@webapp/todo serve",
+    "nx:clear": "nx clear-cache",
+    "todo:serve": "nx serve @webapp/todo",
     "todo:lint": "nx lint @webapp/todo",
     "lint-staged": "lint-staged"
   },
@@ -36,6 +37,7 @@
     "lerna": "^7.1.4",
     "lint-staged": "^13.2.3",
     "nx": "^16.5.5",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "typescript": "^5.1.3"
   }
 }

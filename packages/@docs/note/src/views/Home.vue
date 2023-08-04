@@ -1,6 +1,8 @@
 <template>
   <v-layout>
     <Header />
+  </v-layout>
+  <v-layout>
     <Nav />
     <v-main class="d-flex align-center justify-center" style="min-height: 300px">
       <router-view />
@@ -8,6 +10,6 @@
   </v-layout>
 </template>
 <script setup lang="ts">
-import Header from '@/layouts/Header.vue';
-import Nav from '@/layouts/Nav.vue';
+import { Header } from '@/layouts';
+import { Nav } from '@/layouts';
 </script>

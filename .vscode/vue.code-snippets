@@ -1,0 +1,40 @@
+{
+  "vue setup component": {
+    "scope": "vue",
+    "prefix": ["vsc"],
+    "body": [
+      "<template>",
+      "\t<div></div>",
+      "</template>",
+      "",
+      "<script lang=\"ts\">",
+      "</script>",
+      "",
+      "<style lang=\"scss\" scoped></style>",
+      ""
+    ]
+  },
+  "Vue setup script component": {
+    "scope": "vue",
+    "prefix": ["vssc"],
+    "body": [
+      "<template>",
+      "\t<div></div>",
+      "</template>",
+      "",
+      "<script setup lang=\"ts\">",
+      "type Props = {",
+      "\t// ...",
+      "};",
+      "",
+      "const props = defineProps<Props>();",
+      "",
+      "const emit = defineEmits([]);",
+      "",
+      "defineExpose({});",
+      "</script>",
+      "",
+      "<style scoped lang=\"scss\"></style>"
+    ]
+  }
+}
