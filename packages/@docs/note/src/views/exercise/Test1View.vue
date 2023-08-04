@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { Test, Test2, Test3 } from '@/components';
+import { Test, Test2, Test3 } from '@/components/';
 import type { HeaderTestProps } from '@/types';
 
 const bindDummyData: HeaderTestProps = {
