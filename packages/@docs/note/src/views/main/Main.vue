@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h1>Main</h1>
+    <v-btn> Main </v-btn>
   </div>
 </template>
 
 <script setup lang="ts"></script>
-
-<style lang="scss" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <VHeaderBar v-bind="vHeaderProps">
+  <VHeaderBar v-bind="headerProps">
     <template>
       <v-icon icon="mdi-circle-slice-6" />
       YJW Project
@@ -7,11 +7,11 @@
   </VHeaderBar>
 </template>
 <script setup lang="ts">
-import type { VHeaderBarProps } from '@webapp/component';
+import type { HeaderBarProps } from '@webapp/component';
 import { VHeaderBar } from '@webapp/component';
 import { reactive } from 'vue';
 
-const vHeaderProps = reactive<VHeaderBarProps>({
+const headerProps = reactive<HeaderBarProps>({
   title: 'testTile',
   elevation: 2,
   items: [

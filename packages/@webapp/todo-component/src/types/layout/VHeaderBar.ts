@@ -1,8 +1,8 @@
 import type { DefineComponent, UnwrapRef, UnwrapNestedRefs } from 'vue';
 
-export declare let VHeaderBar: DefineComponent<VHeaderBarProps | UnwrapRef<VHeaderBarProps> | UnwrapNestedRefs<VHeaderBarProps>>;
+export declare let VHeaderBar: DefineComponent<HeaderBarProps | UnwrapRef<HeaderBarProps> | UnwrapNestedRefs<HeaderBarProps>>;
 
-export type VHeaderBarProps = {
+export type HeaderBarProps = {
   title?: string;
   elevation?: HeaderElevation;
   items?: HeaderItems;
@@ -11,12 +11,12 @@ export type VHeaderBarProps = {
 export type HeaderElevation = number;
 
 export type HeaderItem = {
-  itemTitle: VHeaderItemTitle;
+  itemTitle: HeaderItemTitle;
   // refData?: HeaderReference;
   // clickEvent?: HeaderClickEvent;
 };
 
-export type VHeaderItemTitle = string;
+export type HeaderItemTitle = string;
 
 export type HeaderItems = Array<HeaderItem>;
 

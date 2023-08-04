@@ -12,9 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import type { VHeaderBarProps, ButtonClickEvent } from '@/types';
+import type { HeaderBarProps, ButtonClickEvent } from '@/types';
 import { ButtonValue } from '../../types';
-const props = defineProps<VHeaderBarProps>();
+const props = defineProps<HeaderBarProps>();
 const emit = defineEmits(['click']);
 const headers = props.items;
 
