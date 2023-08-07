@@ -1,22 +1,25 @@
 <template>
   <div class="testBox">
-    <InTest v-bind="props">
-      <template v-for="(header, index) in getHeaders" :key="index" #[header]="{ props }">
-        <slot name="header" :props="props" v-bind="props"> </slot>
-      </template>
-    </InTest>
+    <main>
+      <!-- <slot #[slot]="{ props }" /> -->
+      <slot name="test" :props="props"></slot>
+    </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { InTest } from '@/components/exercise/ex1';
 import type { HeaderTestProps } from '@/types/service/exercise';
-import { computed } from 'vue';
+
+const props = {
+  title: 'title',
+  count: 1,
+  id: 999
+};
 
 // bindDummyData
-const props = defineProps<HeaderTestProps>();
+const defineProp = defineProps<HeaderTestProps>();
 console.log('Test');
-console.log(props);
+console.log(defineProp);
 const items = ['header', 'header', 'header'];
 // const getHeaders = computed(() => ['header']);
 const getHeaders = ['header'];

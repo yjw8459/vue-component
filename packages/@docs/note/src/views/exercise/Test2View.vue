@@ -1,25 +1,24 @@
 <template>
   <div class="testViewBox">
-    <v-btn> TestButton@@ </v-btn>
     <Test v-bind="bindDummyData">
-      <template #header="{ props }">
-        <v-btn>Test Button</v-btn>
-        - {{ props }} -
+      <template #test="{ props }">
+        <v-btn>{{ props.title }}</v-btn>
+        <v-btn>Test Button1</v-btn>
+        <v-btn>Test Button2</v-btn>
+        <v-btn>Test Button3</v-btn>
+        <v-btn>Test Button4</v-btn>
+        <v-btn>Test Button5</v-btn>
       </template>
     </Test>
-    <!-- <Test2 v-bind="bindDummyData">
-      <template #header="{ props }">
-        <v-btn>Test Button</v-btn>
-      </template>
-    </Test2> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import { Test, Test2, Test3 } from '@/components/exercise/ex1';
+import { Test } from '@/components/exercise/ex2';
 import type { HeaderTestProps } from '@/types/service/exercise';
 
 const bindDummyData: HeaderTestProps = {
+  slot: 'test',
   title: '타이틀',
   class: '클래스',
   header: 'header',
@@ -36,6 +35,6 @@ const bindDummyData: HeaderTestProps = {
 .testViewBox {
   width: 600px;
   height: 600px;
-  background-color: beige;
+  background-color: red;
 }
 </style>

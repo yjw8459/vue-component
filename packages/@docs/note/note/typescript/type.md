@@ -277,3 +277,28 @@ let assertion_count:number = (word as string).length;
 
 - 기존 Vue2 에서는 props, emit, ref 등의 속성을 사용하여 자식 컴포넌트의 API를 부모 컴포넌트에 노출할 수 있었다.
 - Vue3에서는 defineExpose 함수를 사용하여 자식 컴포넌트에서 노출할 API를 직접 정의할 수 있다.
+
+```html
+<template>
+  <div>{{ message }}</div>
+</template>
+
+<script>
+  import { defineExpose } from 'vue';
+
+  export default {
+    setup() {
+      const message = 'Hello, World!';
+
+      const hello = () => {
+        console.log('Hello from child component!');
+      };
+
+      defineExpose({
+        message,
+        hello
+      });
+    }
+  };
+</script>
+```
