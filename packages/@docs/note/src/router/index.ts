@@ -11,7 +11,23 @@ const routes = [
     component: () => import('@/views/main/Main2.vue')
   },
   {
-    path: '/test',
+    path: '/exercise1',
+    component: () => import('@/views/exercise/Test1View.vue')
+  },
+  {
+    path: '/exercise2',
+    component: () => import('@/views/exercise/Test2View.vue')
+  },
+  {
+    path: '/exercise3',
+    component: () => import('@/views/exercise/Test3View.vue')
+  },
+  {
+    path: '/exercise4',
+    component: () => import('@/views/exercise/Test4View.vue')
+  },
+  {
+    path: '/home',
     children: [
       {
         path: '',

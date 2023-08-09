@@ -8,5 +8,4 @@
 <script setup lang="ts">
 import type { SideBarProps } from '@/types';
 const props = defineProps<SideBarProps>();
-console.log(props.items);
 </script>

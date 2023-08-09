@@ -8,7 +8,6 @@
 import type { ButtonProps, ButtonClickEvent, ButtonValue } from '@/types';
 
 const props = defineProps<ButtonProps>();
-console.log(props);
 const emit = defineEmits(['click']);
 
 const onClick: ButtonClickEvent = (event: any, value: ButtonValue) => {
