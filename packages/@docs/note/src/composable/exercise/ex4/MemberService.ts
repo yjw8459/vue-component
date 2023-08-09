@@ -3,8 +3,9 @@ import { Member } from '@/types/service/exercise';
 
 type MemberService = {
   member?: WritableComputedRef<Member>;
-  memberName?: WritableComputedRef<Member['name']>;
+  memberName: WritableComputedRef<Member['name']>;
   memberEmail?: WritableComputedRef<Member['email']>;
+  memberInitialize: (initialize?: Member) => Member;
 };
 
 export const memberService: () => MemberService = () => {
@@ -27,8 +28,20 @@ export const memberService: () => MemberService = () => {
       data.value.email = newValue;
     }
   });
+
+  // default Settings
+  const memberInitialize: MemberService['memberInitialize'] = initialize => {
+    const state: Member = {
+      name: '',
+      email: '',
+      ...initialize
+    };
+    return state;
+  };
+
   return {
     member,
+    memberInitialize,
     memberName,
     memberEmail
   };

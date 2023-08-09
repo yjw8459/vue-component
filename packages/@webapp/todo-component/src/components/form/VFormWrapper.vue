@@ -1,14 +1,17 @@
 <template>
   <v-container>
-    <v-btn>TEst</v-btn>
-    <slot name="form"></slot>
+    <main>
+      <v-btn>VFormWrapper</v-btn>
+      <slot name="form" :props="props"></slot>
+    </main>
   </v-container>
 </template>
 
 <script setup lang="ts">
 import type { FormWrapperProps } from '@webapp/component';
+const props = defineProps<FormWrapperProps>();
 console.log('VFormWrapper');
-console.log(defineProps<FormWrapperProps>());
+console.log(props);
 </script>
 
 <style scoped lang="scss"></style>

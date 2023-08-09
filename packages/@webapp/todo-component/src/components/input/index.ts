@@ -1,2 +1,3 @@
 import VInput from './VInput.vue';
-export { VInput };
+import VTextField from './VTextField.vue';
+export { VInput, VTextField };
